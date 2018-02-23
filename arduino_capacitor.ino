@@ -134,40 +134,11 @@ default:
 //digitalWrite(sp22, LOW);
 break;
 }
-delay(5000);
-
-// all parallel
-/*
-digitalWrite(sp11, HIGH);
-digitalWrite(sp12, LOW);
-digitalWrite(sp21, LOW);
-digitalWrite(sp22, HIGH);
 
 delay(5000);
-//all off
-/*
- 
-digitalWrite(sp11, LOW);
-digitalWrite(sp12, LOW);
-digitalWrite(sp21, LOW);
-digitalWrite(sp22, LOW);
+ Serial.write(27);       // ESC command
+  Serial.print("[2J");    // clear screen command
+  Serial.write(27);
+  Serial.print("[H");     // cursor to home command
 
-delay(1000);
-//two in series and then cobined in prallel
-digitalWrite(sp11, LOW);
-digitalWrite(sp12, HIGH);
-digitalWrite(sp21, LOW);
-digitalWrite(sp22, HIGH);
-while(1);
-delay(5000);
-//all off
-
-digitalWrite(sp11, LOW);
-digitalWrite(sp12, LOW);
-digitalWrite(sp21, LOW);
-digitalWrite(sp22, LOW);
-
-delay(3000);
-
- */ 
 }
