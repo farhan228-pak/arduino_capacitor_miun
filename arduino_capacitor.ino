@@ -3,7 +3,10 @@ const int sp12= 11;
 const int sp21 =10;
 const int sp22= 9;
 int command=0;
-float voltage;
+float voltage,cell1,cell2,cell3,cell4;
+float node0,node1,node2,node3,node4,node5,node6,node7,node8;
+long previousMillis = 0;
+long interval = 10000;
 float refrence=5;
 
 void setup() {
@@ -34,6 +37,11 @@ digitalWrite(sp22, LOW);
 
 void loop() {
   // put your main code here, to run repeatedly:
+unsigned long currentMillis = millis();
+  if(currentMillis - previousMillis > interval) {
+ 
+    previousMillis = currentMillis;   
+    clr_screen();
 Serial.println("enter number to select one of the 4 options");
 
 Serial.println("Case ""0"" All cell disconnected");
@@ -46,23 +54,56 @@ Serial.println();
 command = (int)Serial.read();
 //Serial.write(command);
 Serial.print("A0=");
-Serial.println(analogRead(A0)*(refrence/1023)*11);
+node0=analogRead(A0)*(refrence/1023)*11;
+Serial.println(node0);
 Serial.print("A1=");
-Serial.println(analogRead(A1)*(refrence/1023)*11);
+node1=analogRead(A1)*(refrence/1023)*11;
+Serial.println(node1);
 Serial.print("A2=");
-Serial.println(analogRead(A2)*(refrence/1023)*11);
+node2=analogRead(A2)*(refrence/1023)*11;
+Serial.println(node2);
 Serial.print("A3=");
-Serial.println(analogRead(A3)*(refrence/1023)*11);
+node3=analogRead(A3)*(refrence/1023)*11;
+Serial.println(node3);
 Serial.print("A4=");
-Serial.println(analogRead(A4)*(refrence/1023)*11);
+node4=analogRead(A4)*(refrence/1023)*11;
+Serial.println(node4);
 Serial.print("A5=");
-Serial.println(analogRead(A5)*(refrence/1023)*11);
+node5=analogRead(A5)*(refrence/1023)*11;
+Serial.println(node5);
 Serial.print("A6=");
-Serial.println(analogRead(A6)*(refrence/1023)*11);
+node6=analogRead(A6)*(refrence/1023)*11;
+Serial.println(node6);
 Serial.print("A7=");
-Serial.println(analogRead(A7)*(refrence/1023)*11);
-command=command-48;
+node7=analogRead(A7)*(refrence/1023)*11;
+Serial.println(node7);
+Serial.println("");
+Serial.println("");
+Serial.println("");
+cell1=node7-node6;
+Serial.print("Cell1=");
+Serial.println(cell1);
 
+
+cell2=node5-node4;
+Serial.print("Cell2=");
+Serial.println(cell2);
+
+
+
+cell3=node3-node2;
+Serial.print("Cell3=");
+Serial.println(cell3);
+
+cell4=node1-node0;
+Serial.print("Cell4=");
+Serial.println(cell4);
+  }
+  if(command>-1)
+  {
+command=command-48;
+//Serial.println(command);
+  }
 switch(command)
 {
   
@@ -141,15 +182,11 @@ break;
 
 default:
 
-//digitalWrite(sp11, LOW);
-//digitalWrite(sp12, LOW);
-//digitalWrite(sp21, LOW);
-//digitalWrite(sp22, LOW);
 break;
 }
 
-delay(5000);
-clr_screen();
+delay(500);
+
 
 }
 
