@@ -6,7 +6,7 @@ int command=0;
 float voltage,cell1,cell2,cell3,cell4;
 float node0,node1,node2,node3,node4,node5,node6,node7,node8;
 long previousMillis = 0;
-long interval = 10;
+long interval = 100;
 float refrence=4.9;
 int pro_begin=0,slected=0;
 
