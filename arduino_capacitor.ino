@@ -2,11 +2,12 @@ const int sp11= 12;
 const int sp12= 11;
 const int sp21 =10;
 const int sp22= 9;
+const int pulse=3;
 int command=0;
 float voltage,cell1,cell2,cell3,cell4;
 float node0,node1,node2,node3,node4,node5,node6,node7,node8;
 long previousMillis = 0;
-long interval = 100;
+long interval = 10;
 float refrence=4.9;
 int pro_begin=0,slected=0;
 
@@ -17,6 +18,7 @@ void setup() {
   pinMode(sp12, OUTPUT);
   pinMode(sp21, OUTPUT);
   pinMode(sp22, OUTPUT);
+  pinMode(3, OUTPUT);
 digitalWrite(sp11, LOW);
 digitalWrite(sp12, LOW);
 digitalWrite(sp21, LOW);
@@ -49,6 +51,7 @@ Serial.println("case ""1"" Two in prallel then combined in prallel -->All in pra
 Serial.println("case ""2"" Two in series then combined in prallel");
 Serial.println("case ""3"" Two in series then combined in Series -->ALL in series");
 Serial.println("case ""4"" ALL in series for charging");
+Serial.println("case ""5"" pulse out pin D3");
 Serial.println();
 
 command = (int)Serial.read();
@@ -192,6 +195,22 @@ delay(1);
 slected=4;
 pro_begin=0;
 break;
+case 5:
+Serial.println("pulse out"); 
+digitalWrite(3,HIGH);
+delay(1);
+//delayMicroseconds(3);
+pro_begin=0;
+digitalWrite(pulse,LOW);
+
+break;
+case 51://clear screen
+
+Serial.write(27);
+ Serial.print("[2J");     // clear screen from curssor point command
+pro_begin=0;
+break;
+
 
 default:
 
